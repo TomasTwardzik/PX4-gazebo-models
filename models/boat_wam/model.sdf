@@ -1,77 +1,34 @@
-<?xml version="1.0"?>
-
-<sdf version='1.6'>
-<!-- Basic model of the 16' WAM-V USV -->
-<model name="boat_wam">
-  <static>false</static>
-  <link name="base_link">
+<?xml version='1.0'?>
+<sdf version='1.7'>
+  <model name='wam-v'>
     <enable_wind>true</enable_wind>
-    <inertial>
-      <mass>180.0</mass>
-      <inertia>
-        <ixx>120.0</ixx>
-        <ixy>0.0</ixy>
-        <ixz>0.0</ixz>
-        <iyy>393</iyy>
-        <iyz>0.0</iyz>
-        <izz>446.0</izz>
-      </inertia>
-    </inertial>
 
-    <visual name="base_visual">
-      <geometry>
-        <mesh><uri>meshes/WAM-V-Base.dae</uri></mesh>
-      </geometry>
-    </visual>
-
-    <!-- Top base -->
-    <collision name="top_base">
-      <pose>0 -0 1.25 0 0 0</pose>
-      <geometry>
-        <box><size>1.85 1 0.1" </size></box>
-      </geometry>
-    </collision>
-
-    <!-- left base -->
-    <collision name="left_float">
-      <pose>-0.4 1.03 0.2 0 1.57 0 </pose>
-      <geometry>
-        <cylinder><length>4</length><radius>0.2</radius></cylinder>
-      </geometry>
-    </collision>
-    <collision name="left_mid_float">
-      <pose>1.85 1.03 0.3 0 1.38 0</pose>
-      <geometry>
-        <cylinder><length>0.5</length><radius>0.17</radius></cylinder>
-      </geometry>
-    </collision>
-    <collision name="left_front_float">
-      <pose>2.3 1.03 0.4 0 1.3 0</pose>
-      <geometry>
-        <cylinder><length>0.45</length><radius>0.12</radius></cylinder>
-      </geometry>
-    </collision>
-
-    <!-- right base -->
-    <collision name="right_float">
-      <pose>-0.4 -1.03 0.2 0 1.57 0 </pose>
-      <geometry>
-        <cylinder><length>4</length><radius>0.2</radius></cylinder>
-      </geometry>
-    </collision>
-    <collision name="right_mid_float">
-      <pose>1.85 -1.03 0.3 0 1.38 0</pose>
-      <geometry>
-        <cylinder><length>0.5</length><radius>0.17</radius></cylinder>
-      </geometry>
-    </collision>
-    <collision name="right_front_float">
-      <pose>2.3 -1.03 0.4 0 1.3 0</pose>
-      <geometry>
-        <cylinder><length>0.45</length><radius>0.12</radius></cylinder>
-      </geometry>
-    </collision>
-
+    <link name="base_link">
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://wam-v/meshes/WAM-V-Base.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://wam-v/meshes/wam-v-base_collision_406.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>180</mass>
+        <inertia>
+          <ixx>120</ixx>
+          <ixy>0</ixy>
+          <iyy>393</iyy>
+          <iyz>0</iyz>
+          <izz>446</izz>
+        </inertia>
+      </inertial>
 			<sensor name="imu_sensor" type="imu">
 				<always_on>1</always_on>
 				<update_rate>250</update_rate>
@@ -147,183 +104,248 @@
 				<update_rate>30</update_rate>
 			</sensor>
 
-  </link>
+    </link>
 
-  <!-- left engine and thruster -->
-  <link name="left_engine_link">
-    <pose>-2.373776 1.027135 0.318237 0 0 0</pose>
-    <visual name ="left_engine_visual">
-      <geometry>
-        <mesh><uri>meshes/engine.dae</uri></mesh>
-      </geometry>
-    </visual>
-    <collision name="left_engine_vertical_axis_collision">
-      <pose>-0.16 0 -0.24 0 0 0</pose>
-      <geometry>
-        <box><size>0.2 0.15 0.83</size></box>
-      </geometry>
-    </collision>
-    <collision name="left_engine_rear_end_collision">
-      <pose>-0.34 0 0.12 0 0 0</pose>
-      <geometry>
-        <box><size>0.12 0.15 0.12</size></box>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass>15.0</mass>
-      <inertia>
-        <ixx>0.889245</ixx>
-        <ixy>0.0</ixy>
-        <ixz>0.0</ixz>
-        <iyy>0.811125</iyy>
-        <iyz>0.0</iyz>
-        <izz>0.078125</izz>
-      </inertia>
-    </inertial>
-  </link>
-  <link name="left_propeller_link">
-    <pose>-2.651932 1.027135 -0.191134 0 0 0</pose>
-    <visual name ="left_propeller_visual">
-      <geometry>
-        <mesh><uri>meshes/propeller.dae</uri></mesh>
-      </geometry>
-    </visual>
-    <collision name="left_propeller_collision">
-      <pose>-0.08 0 0 0 1.57 0</pose>
-      <geometry>
-        <cylinder><length>0.18</length><radius>0.24</radius></cylinder>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass>0.5</mass>
-      <inertia>
-        <ixx>0.008545</ixx>
-        <ixy>0.0</ixy>
-        <ixz>0.0</ixz>
-        <iyy>0.008545</iyy>
-        <iyz>0.0</iyz>
-        <izz>0.0144</izz>
-      </inertia>
-    </inertial>
-  </link>
+    <!--
+      Dimensions for a standard aft-thruster H-configuration based on the robot description
+      from the osrf/vrx project.
+      https://github.com/osrf/vrx/wiki/tutorials-PropulsionConfiguration
 
-  <joint name="servo_0" type="revolute">
-    <axis>
-      <xyz>0 0 1</xyz>
-      <limit>
-        <lower>-1.57079</lower>
-        <upper>1.57079</upper>
-        <effort>10</effort>
-        <velocity>10</velocity>
-      </limit>
-    </axis>
-    <parent>base_link</parent>
-    <child>left_engine_link</child>
-  </joint>
+      Links
+      https://github.com/osrf/vrx/blob/master/wamv_gazebo/urdf/thruster_layouts/wamv_aft_thrusters.xacro
 
-  <joint name="left_engine_propeller_joint" type="revolute">
-    <axis>
-      <xyz>1 0 0</xyz>
-      <limit>
-        <effort>100</effort>
-        <velocity>100</velocity>
-      </limit>
-      <dynamics>
-        <friction>0.05</friction>
-        <damping>0.05</damping>
-      </dynamics>
-    </axis>
-    <parent>left_engine_link</parent>
-    <child>left_propeller_link</child>
-  </joint>
+      Joints
+      https://github.com/osrf/vrx/blob/master/wamv_description/urdf/thrusters/engine.xacro
 
-  <!-- right engine and thruster -->
-  <link name="right_engine_link">
-    <pose>-2.373776 -1.027135 0.318237 0 0 0</pose>
-    <visual name ="right_engine_visual">
-      <geometry>
-        <mesh><uri>meshes/engine.dae</uri></mesh>
-      </geometry>
-    </visual>
-    <collision name="right_engine_vertical_axis_collision">
-      <pose>-0.16 0 -0.24 0 0 0</pose>
-      <geometry>
-        <box><size>0.2 0.15 0.83</size></box>
-      </geometry>
-    </collision>
-    <collision name="right_engine_rear_end_collision">
-      <pose>-0.34 0 0.12 0 0 0</pose>
-      <geometry>
-        <box><size>0.12 0.15 0.12</size></box>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass>15.0</mass>
-      <inertia>
-        <ixx>0.889245</ixx>
-        <ixy>0.0</ixy>
-        <ixz>0.0</ixz>
-        <iyy>0.811125</iyy>
-        <iyz>0.0</iyz>
-        <izz>0.078125</izz>
-      </inertia>
-    </inertial>
-  </link>
-  <link name="right_propeller_link">
-    <pose>-2.651932 -1.027135 -0.191134 0 0 0</pose>
-    <visual name ="right_propeller_visual">
-      <geometry>
-        <mesh><uri>meshes/propeller.dae</uri></mesh>
-      </geometry>
-    </visual>
-    <collision name="right_propeller_collision">
-      <pose>-0.08 0 0 0 1.57 0</pose>
-      <geometry>
-        <cylinder><length>0.18</length><radius>0.24</radius></cylinder>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass>0.5</mass>
-      <inertia>
-        <ixx>0.008545</ixx>
-        <ixy>0.0</ixy>
-        <ixz>0.0</ixz>
-        <iyy>0.008545</iyy>
-        <iyz>0.0</iyz>
-        <izz>0.0144</izz>
-      </inertia>
-    </inertial>
-  </link>
+    -->
+    <link name="left_engine_link">
+      <pose>-2.373776 1.027135 0.318237 0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://wam-v/meshes/engine.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="engine_vertical_axis_collision">
+        <pose>-0.16 0 -0.215 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.2 0.1 0.83</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="engine_rear_end_collision">
+        <pose>-0.34 0 0.12 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.12 0.15 0.12</size>
+          </box>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass>15</mass>
+        <inertia>
+          <ixx>0.88924</ixx>
+          <ixy>0</ixy>
+          <iyy>0.911125</iyy>
+          <iyz>0</iyz>
+          <izz>0.078125</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <joint name="servo_0" type="revolute">
+      <parent>base_link</parent>
+      <child>left_engine_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.570796</lower>
+          <upper>1.570796</upper>
+        </limit>
+        <dynamics>
+          <damping>0.05</damping>
+        </dynamics>
+      </axis>
+    </joint>
 
-  <joint name="servo_1" type="revolute">
-    <axis>
-      <xyz>0 0 1</xyz>
-      <limit>
-        <lower>-1.57079</lower>
-        <upper>1.57079</upper>
-        <effort>10</effort>
-        <velocity>10</velocity>
-      </limit>
-    </axis>
-    <parent>base_link</parent>
-    <child>right_engine_link</child>
-  </joint>
+    <link name="right_engine_link">
+      <pose>-2.373776 -1.027135 0.318237 0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://wam-v/meshes/engine.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="engine_vertical_axis_collision">
+        <pose>-0.16 0 -0.215 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.2 0.1 0.83</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="engine_rear_end_collision">
+        <pose>-0.34 0 0.12 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.12 0.15 0.12</size>
+          </box>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass>15</mass>
+        <inertia>
+          <ixx>0.88924</ixx>
+          <ixy>0</ixy>
+          <iyy>0.911125</iyy>
+          <iyz>0</iyz>
+          <izz>0.078125</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <joint name="servo_1" type="revolute">
+      <parent>base_link</parent>
+      <child>right_engine_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.570796</lower>
+          <upper>1.570796</upper>
+        </limit>
+        <dynamics>
+          <damping>0.05</damping>
+        </dynamics>
+      </axis>
+    </joint>
 
-  <joint name="right_engine_propeller_joint" type="revolute">
-    <axis>
-      <xyz>1 0 0</xyz>
-      <limit>
-        <effort>100</effort>
-        <velocity>100</velocity>
-      </limit>
-      <dynamics>
-        <friction>0.05</friction>
-        <damping>0.05</damping>
-      </dynamics>
-    </axis>
-    <parent>right_engine_link</parent>
-    <child>right_propeller_link</child>
-  </joint>
+    <link name="left_propeller_link">
+      <pose relative_to="left_propeller_joint">0 0 0 0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://wam-v/meshes/propeller.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="collision">
+        <pose>-0.11 0 0 0 1.570796 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.08</length>
+            <radius>0.24</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.008545</ixx>
+          <ixy>0</ixy>
+          <iyy>0.008545</iyy>
+          <iyz>0</iyz>
+          <izz>0.0144</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <joint name="left_propeller_joint" type="revolute">
+      <pose relative_to="left_engine_link">-0.278156 0 -0.509371 0 0 0</pose>
+      <parent>left_engine_link</parent>
+      <child>left_propeller_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <dynamics>
+          <damping>0.01</damping>
+        </dynamics>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+      </axis>
+    </joint>
+
+    <link name="right_propeller_link">
+      <pose relative_to="right_propeller_joint">0 0 0 0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://wam-v/meshes/propeller.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="collision">
+        <pose>-0.11 0 0 0 1.570796 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.08</length>
+            <radius>0.24</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.008545</ixx>
+          <ixy>0</ixy>
+          <iyy>0.008545</iyy>
+          <iyz>0</iyz>
+          <izz>0.0144</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <joint name="right_propeller_joint" type="revolute">
+      <pose relative_to="right_engine_link">-0.278156 0 -0.509371 0 0 0</pose>
+      <parent>right_engine_link</parent>
+      <child>right_propeller_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <dynamics>
+          <damping>0.01</damping>
+        </dynamics>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+      </axis>
+    </joint>
+
+    <!-- Sensors -->
+    <!-- <link name="imu_link">
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.15</mass>
+        <inertia>
+          <ixx>0.00001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00002</iyy>
+          <iyz>0</iyz>
+          <izz>0.00002</izz>
+        </inertia>
+      </inertial>
+      <sensor name="imu_sensor" type="imu">
+        <pose>0 0 0 3.141593 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>1000.0</update_rate>
+      </sensor>
+    </link>
+    <joint name="imu_joint" type="revolute">
+      <child>imu_link</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <damping>1.0</damping>
+        </dynamics>
+      </axis>
+    </joint> -->
 
     <plugin
       filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
@@ -343,97 +365,87 @@
       <d_gain>0</d_gain>
     </plugin>
 
-  <!-- Uncomment to enable the left thruster -->
-  <plugin
-    filename="gz-sim-thruster-system"
-    name="gz::sim::systems::Thruster">
-    <joint_name>left_engine_propeller_joint</joint_name>
-    <thrust_coefficient>0.004422</thrust_coefficient>
-    <fluid_density>1000</fluid_density>
-    <propeller_diameter>0.2</propeller_diameter>
-    <velocity_control>true</velocity_control>
-  </plugin>
+    <!-- Joint state and force plugins -->
+    <plugin filename="gz-sim-joint-state-publisher-system"
+      name="gz::sim::systems::JointStatePublisher">
+    </plugin>
+    <plugin filename="gz-sim-apply-joint-force-system"
+      name="gz::sim::systems::ApplyJointForce">
+      <joint_name>servo_0</joint_name>
+    </plugin>
+    <plugin filename="gz-sim-apply-joint-force-system"
+      name="gz::sim::systems::ApplyJointForce">
+      <joint_name>servo_1</joint_name>
+    </plugin>
 
-  <!-- <plugin
-    filename="gz-sim-joint-position-controller-system"
-    name="gz::sim::systems::JointPositionController">
-    <joint_name>servo_0</joint_name>
-    <use_velocity_commands>true</use_velocity_commands>
-    <topic>/wamv/left/thruster/joint/cmd_pos</topic>
-  </plugin> -->
+    <!-- Thruster plugins -->
+    <plugin
+        filename="gz-sim-thruster-system"
+        name="gz::sim::systems::Thruster">
+      <namespace>wam-v</namespace>
+      <joint_name>left_propeller_joint</joint_name>
+      <use_angvel_cmd>0</use_angvel_cmd>
+      <fluid_density>1000</fluid_density>
+      <propeller_diameter>0.48</propeller_diameter>
+      <thrust_coefficient>0.01</thrust_coefficient>
+      <velocity_control>1</velocity_control>
+      <!-- <p_gain>1.0</p_gain>
+      <i_gain>0.0</i_gain>
+      <d_gain>0.0</d_gain> -->
+      <max_thrust_cmd>2000.0</max_thrust_cmd>
+      <min_thrust_cmd>-2000.0</min_thrust_cmd>
+    </plugin>
+    <plugin
+        filename="gz-sim-thruster-system"
+        name="gz::sim::systems::Thruster">
+      <namespace>wam-v</namespace>
+      <joint_name>right_propeller_joint</joint_name>
+      <use_angvel_cmd>0</use_angvel_cmd>
+      <fluid_density>1000</fluid_density>
+      <propeller_diameter>0.48</propeller_diameter>
+      <thrust_coefficient>0.01</thrust_coefficient>
+      <velocity_control>1</velocity_control>
+      <!-- <p_gain>1.0</p_gain>
+      <i_gain>0.0</i_gain>
+      <d_gain>0.0</d_gain> -->
+      <max_thrust_cmd>2000.0</max_thrust_cmd>
+      <min_thrust_cmd>-2000.0</min_thrust_cmd>
+    </plugin>
 
-  <!-- Uncomment to enable the right thruster -->
-  <plugin
-    filename="gz-sim-thruster-system"
-    name="gz::sim::systems::Thruster">
-    <joint_name>right_engine_propeller_joint</joint_name>
-    <thrust_coefficient>0.004422</thrust_coefficient>
-    <fluid_density>1000</fluid_density>
-    <propeller_diameter>0.2</propeller_diameter>
-    <velocity_control>true</velocity_control>
-  </plugin>
+    <!-- Hydrodynamics plugin -->
+    <plugin
+        filename="gz-waves1-hydrodynamics-system"
+        name="gz::sim::systems::Hydrodynamics">
 
-  <!-- <plugin
-    filename="gz-sim-joint-position-controller-system"
-    name="gz::sim::systems::JointPositionController">
-    <joint_name>servo_1</joint_name>
-    <use_velocity_commands>true</use_velocity_commands>
-    <topic>/wamv/right/thruster/joint/cmd_pos</topic>
-  </plugin> -->
+        <enable>boat_wam_0</enable>
 
-  <!-- Uncomment to produce buoyancy on the left hull -->
-  <plugin
-    filename="libSurface.so"
-    name="maritime::Surface">
-    <link_name>base_link</link_name>
-    <hull_length>4.9</hull_length>
-    <hull_radius>0.213</hull_radius>
-    <fluid_level>0</fluid_level>
-    <points>
-      <point>0.6 1.03 0</point>
-      <point>-1.4 1.03 0</point>
-    </points>
-    <wavefield>
-      <topic>/gazebo/wavefield/parameters</topic>
-    </wavefield>
-  </plugin>
+        <!-- <enable>wam-v::left_engine_link</enable>
+        <enable>wam-v::left_propeller_link</enable>
+        <enable>wam-v::right_engine_link</enable>
+        <enable>wam-v::right_propeller_link</enable> -->
 
-  <!-- Uncomment to produce buoyancy on the right hull -->
-  <plugin
-    filename="libSurface.so"
-    name="maritime::Surface">
-    <link_name>base_link</link_name>
-    <hull_length>4.9</hull_length>
-    <hull_radius>0.213</hull_radius>
-    <fluid_level>0</fluid_level>
-    <points>
-      <point>0.6 -1.03 0</point>
-      <point>-1.4 -1.03 0</point>
-    </points>
-    <wavefield>
-      <topic>/gazebo/wavefield/parameters</topic>
-    </wavefield>
-  </plugin>
+        <hydrodynamics>
+          <damping_on>1</damping_on>
+          <viscous_drag_on>1</viscous_drag_on>
+          <pressure_drag_on>1</pressure_drag_on>
 
-  <!-- Uncomment to enable hydrodynamics -->
-  <plugin
-    filename="gz-sim-hydrodynamics-system"
-    name="gz::sim::systems::Hydrodynamics">
-    <link_name>base_link</link_name>
-    <xDotU>0.0</xDotU>
-    <yDotV>0.0</yDotV>
-    <nDotR>0.0</nDotR>
-    <xU>-51.3</xU>
-    <xAbsU>-72.4</xAbsU>
-    <yV>-40.0</yV>
-    <yAbsV>0.0</yAbsV>
-    <zW>-500.0</zW>
-    <kP>-50.0</kP>
-    <mQ>-50.0</mQ>
-    <nR>-400.0</nR>
-    <nAbsR>0.0</nAbsR>
-  </plugin>
+          <!-- Linear and Angular Damping -->
+          <cDampL1>1.0E-6</cDampL1>
+          <cDampL2>1.0E-6</cDampL2>
+          <cDampR1>1.0E-6</cDampR1>
+          <cDampR2>1.0E-6</cDampR2>
 
-</model>
+          <!-- 'Pressure' Drag -->
+          <cPDrag1>1.0E+2</cPDrag1>
+          <cPDrag2>1.0E+2</cPDrag2>
+          <fPDrag>0.4</fPDrag>
+          <cSDrag1>1.0E+2</cSDrag1>
+          <cSDrag2>1.0E+2</cSDrag2>
+          <fSDrag>0.4</fSDrag>
+          <vRDrag>1.0</vRDrag>
+        </hydrodynamics>
+    </plugin>
 
+
+  </model>
 </sdf>
