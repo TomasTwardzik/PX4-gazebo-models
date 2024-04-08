@@ -382,32 +382,33 @@
     <plugin
         filename="gz-sim-thruster-system"
         name="gz::sim::systems::Thruster">
-      <namespace>wam-v</namespace>
+      <namespace>boat_wam_0</namespace>
       <joint_name>left_propeller_joint</joint_name>
-      <use_angvel_cmd>0</use_angvel_cmd>
+      <use_angvel_cmd>false</use_angvel_cmd>
       <fluid_density>1000</fluid_density>
       <propeller_diameter>0.48</propeller_diameter>
       <thrust_coefficient>0.01</thrust_coefficient>
-      <velocity_control>1</velocity_control>
-      <!-- <p_gain>1.0</p_gain>
+      <velocity_control>0</velocity_control>
+      <p_gain>1.0</p_gain>
       <i_gain>0.0</i_gain>
-      <d_gain>0.0</d_gain> -->
+      <d_gain>0.0</d_gain>
       <max_thrust_cmd>2000.0</max_thrust_cmd>
       <min_thrust_cmd>-2000.0</min_thrust_cmd>
     </plugin>
     <plugin
         filename="gz-sim-thruster-system"
         name="gz::sim::systems::Thruster">
-      <namespace>wam-v</namespace>
+      <namespace>boat_wam_0</namespace>
+      <!-- TODO: REMOVE this namespace and add check for this boat_wam_0 -->
       <joint_name>right_propeller_joint</joint_name>
-      <use_angvel_cmd>0</use_angvel_cmd>
+      <use_angvel_cmd>false</use_angvel_cmd>
       <fluid_density>1000</fluid_density>
       <propeller_diameter>0.48</propeller_diameter>
       <thrust_coefficient>0.01</thrust_coefficient>
-      <velocity_control>1</velocity_control>
-      <!-- <p_gain>1.0</p_gain>
+      <velocity_control>0</velocity_control>
+      <p_gain>1.0</p_gain>
       <i_gain>0.0</i_gain>
-      <d_gain>0.0</d_gain> -->
+      <d_gain>0.0</d_gain>
       <max_thrust_cmd>2000.0</max_thrust_cmd>
       <min_thrust_cmd>-2000.0</min_thrust_cmd>
     </plugin>
