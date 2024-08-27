@@ -119,7 +119,7 @@
 
     -->
     <link name="left_engine_link">
-      <pose>-2.373776 1.027135 0.318237 0 0 0</pose>
+      <pose>-2.373776 0 0.318237 0 0 0</pose>
       <visual name="visual">
         <geometry>
           <mesh>
@@ -169,7 +169,7 @@
       </axis>
     </joint>
 
-    <link name="right_engine_link">
+    <!-- <link name="right_engine_link">
       <pose>-2.373776 -1.027135 0.318237 0 0 0</pose>
       <visual name="visual">
         <geometry>
@@ -204,8 +204,8 @@
           <izz>0.078125</izz>
         </inertia>
       </inertial>
-    </link>
-    <joint name="servo_1" type="revolute">
+    </link> -->
+    <!-- <joint name="servo_1" type="revolute">
       <parent>base_link</parent>
       <child>right_engine_link</child>
       <axis>
@@ -218,7 +218,7 @@
           <damping>0.05</damping>
         </dynamics>
       </axis>
-    </joint>
+    </joint> -->
 
     <link name="left_propeller_link">
       <pose relative_to="left_propeller_joint">0 0 0 0 0 0</pose>
@@ -265,7 +265,7 @@
       </axis>
     </joint>
 
-    <link name="right_propeller_link">
+    <!-- <link name="right_propeller_link">
       <pose relative_to="right_propeller_joint">0 0 0 0 0 0</pose>
       <visual name="visual">
         <geometry>
@@ -293,8 +293,8 @@
           <izz>0.0144</izz>
         </inertia>
       </inertial>
-    </link>
-    <joint name="right_propeller_joint" type="revolute">
+    </link> -->
+    <!-- <joint name="right_propeller_joint" type="revolute">
       <pose relative_to="right_engine_link">-0.278156 0 -0.509371 0 0 0</pose>
       <parent>right_engine_link</parent>
       <child>right_propeller_link</child>
@@ -308,7 +308,7 @@
           <upper>1e+16</upper>
         </limit>
       </axis>
-    </joint>
+    </joint> -->
 
     <!-- Sensors -->
     <!-- <link name="imu_link">
@@ -356,14 +356,14 @@
       <d_gain>0</d_gain>
     </plugin>
 
-    <plugin
+    <!-- <plugin
       filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
       <joint_name>servo_1</joint_name>
       <sub_topic>servo_1</sub_topic>
       <p_gain>100</p_gain>
       <i_gain>0</i_gain>
       <d_gain>0</d_gain>
-    </plugin>
+    </plugin> -->
 
     <!-- Joint state and force plugins -->
     <plugin filename="gz-sim-joint-state-publisher-system"
@@ -373,10 +373,10 @@
       name="gz::sim::systems::ApplyJointForce">
       <joint_name>servo_0</joint_name>
     </plugin>
-    <plugin filename="gz-sim-apply-joint-force-system"
+    <!-- <plugin filename="gz-sim-apply-joint-force-system"
       name="gz::sim::systems::ApplyJointForce">
       <joint_name>servo_1</joint_name>
-    </plugin>
+    </plugin> -->
 
     <!-- Thruster plugins -->
     <plugin
@@ -395,7 +395,7 @@
       <max_thrust_cmd>8000.0</max_thrust_cmd>
       <min_thrust_cmd>-8000.0</min_thrust_cmd>
     </plugin>
-    <plugin
+    <!-- <plugin
         filename="gz-sim-thruster-system"
         name="gz::sim::systems::Thruster">
       <namespace>boat_wam_0</namespace>
@@ -411,7 +411,7 @@
       <d_gain>0.0</d_gain>
       <max_thrust_cmd>8000.0</max_thrust_cmd>
       <min_thrust_cmd>-8000.0</min_thrust_cmd>
-    </plugin>
+    </plugin> -->
 
     <!-- Hydrodynamics plugin -->
     <plugin
