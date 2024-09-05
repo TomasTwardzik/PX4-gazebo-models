@@ -20,13 +20,13 @@
       </collision>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
-        <mass>180</mass>
+        <mass>220</mass>
         <inertia>
-          <ixx>120</ixx>
+          <ixx>250</ixx>
           <ixy>0</ixy>
-          <iyy>393</iyy>
+          <iyy>353</iyy>
           <iyz>0</iyz>
-          <izz>446</izz>
+          <izz>400</izz>
         </inertia>
       </inertial>
 			<sensor name="imu_sensor" type="imu">
@@ -160,8 +160,8 @@
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
-          <lower>-1.570796</lower>
-          <upper>1.570796</upper>
+          <lower>-1.20796</lower>
+          <upper>1.20796</upper>
         </limit>
         <dynamics>
           <damping>0.05</damping>
@@ -211,8 +211,8 @@
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
-          <lower>-1.570796</lower>
-          <upper>1.570796</upper>
+          <lower>-1.20796</lower>
+          <upper>1.20796</upper>
         </limit>
         <dynamics>
           <damping>0.05</damping>
@@ -392,8 +392,8 @@
       <p_gain>1.0</p_gain>
       <i_gain>0.0</i_gain>
       <d_gain>0.0</d_gain>
-      <max_thrust_cmd>8000.0</max_thrust_cmd>
-      <min_thrust_cmd>-8000.0</min_thrust_cmd>
+      <max_thrust_cmd>15000.0</max_thrust_cmd>
+      <min_thrust_cmd>-15000.0</min_thrust_cmd>
     </plugin>
     <plugin
         filename="gz-sim-thruster-system"
@@ -409,8 +409,8 @@
       <p_gain>1.0</p_gain>
       <i_gain>0.0</i_gain>
       <d_gain>0.0</d_gain>
-      <max_thrust_cmd>8000.0</max_thrust_cmd>
-      <min_thrust_cmd>-8000.0</min_thrust_cmd>
+      <max_thrust_cmd>15000.0</max_thrust_cmd>
+      <min_thrust_cmd>-15000.0</min_thrust_cmd>
     </plugin>
 
     <!-- Hydrodynamics plugin -->
