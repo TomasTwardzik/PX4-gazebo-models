@@ -22,9 +22,9 @@
         <pose>0 0 0 0 0 0</pose>
         <mass>220</mass>
         <inertia>
-          <ixx>250</ixx>
+          <ixx>600</ixx>
           <ixy>0</ixy>
-          <iyy>353</iyy>
+          <iyy>303</iyy>
           <iyz>0</iyz>
           <izz>400</izz>
         </inertia>
@@ -392,8 +392,8 @@
       <p_gain>1.0</p_gain>
       <i_gain>0.0</i_gain>
       <d_gain>0.0</d_gain>
-      <max_thrust_cmd>15000.0</max_thrust_cmd>
-      <min_thrust_cmd>-15000.0</min_thrust_cmd>
+      <max_thrust_cmd>8000.0</max_thrust_cmd>
+      <min_thrust_cmd>-8000.0</min_thrust_cmd>
     </plugin>
     <plugin
         filename="gz-sim-thruster-system"
@@ -409,8 +409,8 @@
       <p_gain>1.0</p_gain>
       <i_gain>0.0</i_gain>
       <d_gain>0.0</d_gain>
-      <max_thrust_cmd>15000.0</max_thrust_cmd>
-      <min_thrust_cmd>-15000.0</min_thrust_cmd>
+      <max_thrust_cmd>8000.0</max_thrust_cmd>
+      <min_thrust_cmd>-8000.0</min_thrust_cmd>
     </plugin>
 
     <!-- Hydrodynamics plugin -->
