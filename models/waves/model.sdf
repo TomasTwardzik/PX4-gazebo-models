@@ -6,7 +6,7 @@
     <plugin
         filename="gz-waves1-waves-model-system"
         name="gz::sim::systems::WavesModel">
-      <static>1</static>
+      <static>0</static>
       <update_rate>30</update_rate>
       <wave>
         <!-- `fft` wave parameters -->
