@@ -1,20 +1,20 @@
 <?xml version='1.0'?>
 <sdf version='1.7'>
-  <model name='wam-v'>
+  <model name='boat_wam'>
     <enable_wind>true</enable_wind>
 
     <link name="base_link">
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://wam-v/meshes/WAM-V-Base.dae</uri>
+            <uri>model://boat_wam/meshes/WAM-V-Base.dae</uri>
           </mesh>
         </geometry>
       </visual>
       <collision name="collision">
         <geometry>
           <mesh>
-            <uri>model://wam-v/meshes/wam-v-base_collision_406.stl</uri>
+            <uri>model://boat_wam/meshes/wam-v-base_collision_406.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -195,7 +195,7 @@
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://wam-v/meshes/engine.dae</uri>
+            <uri>model://boat_wam/meshes/engine.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -246,7 +246,7 @@
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://wam-v/meshes/engine.dae</uri>
+            <uri>model://boat_wam/meshes/engine.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -297,7 +297,7 @@
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://wam-v/meshes/propeller.dae</uri>
+            <uri>model://boat_wam/meshes/propeller.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -342,7 +342,7 @@
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://wam-v/meshes/propeller.dae</uri>
+            <uri>model://boat_wam/meshes/propeller.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -492,10 +492,10 @@
 
         <enable>boat_wam_0</enable>
 
-        <!-- <enable>wam-v::left_engine_link</enable>
-        <enable>wam-v::left_propeller_link</enable>
-        <enable>wam-v::right_engine_link</enable>
-        <enable>wam-v::right_propeller_link</enable> -->
+        <!-- <enable>boat_wam::left_engine_link</enable>
+        <enable>boat_wam::left_propeller_link</enable>
+        <enable>boat_wam::right_engine_link</enable>
+        <enable>boat_wam::right_propeller_link</enable> -->
 
         <hydrodynamics>
           <damping_on>1</damping_on>
